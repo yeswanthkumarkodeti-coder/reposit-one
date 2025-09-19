@@ -1,3 +1,4 @@
 Name: Kodeti Yeswanth Kumar
 roll no: 26
+suc code: 2366250409
 section: Bsc AI 
