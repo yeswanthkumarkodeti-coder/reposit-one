@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Starter Web Page — Single File</title>
+  <meta name="description" content="A modern responsive single-file starter webpage with HTML, CSS and JavaScript." />
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --muted:#9aa4b2; --accent:#6ee7b7; --glass: rgba(255,255,255,0.04);
+      --radius:14px; --maxw:1100px; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg) 0%, #071021 100%);color:#e6eef6}
+    a{color:var(--accent);text-decoration:none}
+    .container{max-width:var(--maxw);margin:28px auto;padding:24px}
+
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:44px;height:44px;background:linear-gradient(135deg,#10b981,#60a5fa);border-radius:8px;display:grid;place-items:center;font-weight:700}
+    nav{display:flex;gap:14px;align-items:center}
+    .btn{background:var(--glass);padding:10px 14px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);cursor:pointer}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:center;margin-top:28px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:22px;border-radius:var(--radius);box-shadow:0 6px 18px rgba(2,6,23,0.6)}
+    h1{font-size:clamp(22px,4vw,36px);margin:0 0 10px}
+    p.lead{color:var(--muted);margin:0 0 18px}
+
+    /* Features */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+    .feature{padding:14px;border-radius:12px;background:rgba(255,255,255,0.02);min-height:96px}
+    .feature h3{margin:6px 0 6px;font-size:16px}
+
+    /* Footer */
+    footer{margin-top:28px;color:var(--muted);font-size:13px}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      .features{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:560px){
+      nav{display:none}
+      header{gap:8px}
+      .features{grid-template-columns:1fr}
+    }
+
+    /* Simple form */
+    form{display:flex;flex-direction:column;gap:8px}
+    input,textarea{padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    .row{display:flex;gap:8px}
+    .row > *{flex:1}
+
+    /* Small utilities */
+    .muted{color:var(--muted)}
+    .inline{display:inline-flex;gap:8px;align-items:center}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">W</div>
+        <div>
+          <div style="font-weight:700">WebStarter</div>
+          <div class="muted" style="font-size:12px">Single-file responsive template</div>
+        </div>
+      </div>
+      <nav aria-label="Main navigation">
+        <a class="btn" href="#features">Features</a>
+        <a class="btn" href="#contact">Contact</a>
+        <button id="themeToggle" class="btn" aria-pressed="false">Toggle Theme</button>
+      </nav>
+      <button id="menuBtn" class="btn" aria-expanded="false" style="display:none">Menu</button>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="card">
+          <h1>Beautiful, simple, and accessible web pages — ready to edit</h1>
+          <p class="lead">This starter page includes a responsive layout, small component set, and unobtrusive JavaScript — a great base for prototypes, portfolios, or small business sites.</p>
+          <div class="features" id="features">
+            <div class="feature">
+              <strong>Responsive</strong>
+              <h3>Looks great on phones & desktops</h3>
+              <p class="muted">Flexible grid layout and readable type scale.</p>
+            </div>
+            <div class="feature">
+              <strong>Accessible</strong>
+              <h3>Keyboard + screen reader friendly</h3>
+              <p class="muted">Semantic markup and ARIA where appropriate.</p>
+            </div>
+            <div class="feature">
+              <strong>Interactive</strong>
+              <h3>Small JS for enhancement</h3>
+              <p class="muted">Theme toggle, simple form validation and smooth scrolling.</p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="card">
+          <h3 style="margin-top:0">Get in touch</h3>
+          <form id="contact" novalidate>
+            <input id="name" required placeholder="Your name" />
+            <input id="email" type="email" required placeholder="Email address" />
+            <textarea id="message" rows="4" placeholder="Message"></textarea>
+            <div class="row">
+              <button type="submit" class="btn">Send</button>
+              <button type="button" id="clear" class="btn">Clear</button>
+            </div>
+            <div id="status" class="muted" aria-live="polite" style="margin-top:8px"></div>
+          </form>
+        </aside>
+      </section>
+
+      <section style="margin-top:18px">
+        <div class="card">
+          <h2>How to use</h2>
+          <ol>
+            <li>Edit content inside &lt;main&gt; to add your sections.</li>
+            <li>Customize colors in the <code>:root</code> CSS variables.</li>
+            <li>Replace the contact form handler with your backend or service (Formspree, Netlify, etc.).</li>
+          </ol>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div class="inline">
+        <div class="muted">© <span id="year"></span> WebStarter</div>
+        <div style="margin-left:8px">• <a href="#">Privacy</a></div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Small JS: theme toggle + form handling + date
+    const root = document.documentElement;
+    const themeBtn = document.getElementById('themeToggle');
+    const yearSpan = document.getElementById('year');
+    yearSpan.textContent = new Date().getFullYear();
+
+    // Simple theme toggle (light/dark by flipping CSS vars)
+    let light = false;
+    themeBtn.addEventListener('click', ()=>{
+      light = !light;
+      themeBtn.setAttribute('aria-pressed', String(light));
+      if(light){
+        root.style.setProperty('--bg','#f6f9fb');
+        root.style.setProperty('--card','#ffffff');
+        root.style.setProperty('--muted','#52606d');
+        root.style.setProperty('--accent','#0ea5a4');
+        root.style.setProperty('--glass','rgba(2,6,23,0.03)');
+        document.body.style.color = '#071017';
+      } else {
+        root.style.removeProperty('--bg');
+        root.style.removeProperty('--card');
+        root.style.removeProperty('--muted');
+        root.style.removeProperty('--accent');
+        root.style.removeProperty('--glass');
+        document.body.style.color = '';
+      }
+    });
+
+    // Basic form validation + fake submit
+    const form = document.getElementById('contact');
+    const status = document.getElementById('status');
+    document.getElementById('clear').addEventListener('click', ()=>{form.reset(); status.textContent=''});
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      if(!name || !email){ status.textContent = 'Please provide name and a valid email.'; return }
+      status.textContent = 'Sending...';
+      // Placeholder: simulate sending without network
+      setTimeout(()=>{ status.textContent = 'Message sent — thanks! (demo only)'; form.reset(); }, 800);
+    });
+
+    // Accessibility: keyboard nav for small screens (toggle menu)
+    const menuBtn = document.getElementById('menuBtn');
+    const nav = document.querySelector('nav');
+    // show menu button if nav hidden by CSS at small widths
+    function checkNav(){ if(getComputedStyle(nav).display === 'none'){ menuBtn.style.display='inline-flex'; } else { menuBtn.style.display='none' }}
+    window.addEventListener('resize', checkNav); checkNav();
+    menuBtn.addEventListener('click', ()=>{
+      const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', String(!expanded));
+      nav.style.display = expanded ? 'none' : 'flex';
+    });
+  </script>
+</body>
+</html>
